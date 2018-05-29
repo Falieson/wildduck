@@ -107,6 +107,7 @@ echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb
 
 apt-get update
 apt-get -q -y install pwgen git ufw build-essential libssl-dev dnsutils python software-properties-common nginx lsb-release wget
+apt-get -q -y install lsof dirmngr # FALIESON
 
 # node
 curl -sL https://deb.nodesource.com/setup_8.x | bash -
@@ -207,6 +208,7 @@ emailDomain=\"$MAILDOMAIN\"" | cat - /etc/wildduck/wildduck.toml > temp && mv te
 sed -i -e "s/localhost:3000/$HOSTNAME/g;s/localhost/$HOSTNAME/g;s/2587/587/g" /etc/wildduck/wildduck.toml
 
 cd /opt/wildduck
+npm cache clear --force # FALIESON
 npm install --unsafe-perm --production
 
 chown -R deploy:deploy /var/opt/wildduck.git
